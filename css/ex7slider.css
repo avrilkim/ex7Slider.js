@@ -1,0 +1,8 @@
+/*
+StyleSheet for ex7Slider.js
+*/
+
+.exsliderWrap { position:relative; float:none; overflow: hidden;}
+.exsliderWrap .exslider > div {float:left;}
+.exsliderWrap .exNextBtn { position:absolute; right:0; top:50%;}
+.exsliderWrap .exPrevBtn { position:absolute; left:0; top:50%;}

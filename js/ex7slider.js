@@ -10,10 +10,14 @@
         var goNext;
         var goPrev;
         var motionT = 300;
+        var delayTime = 3000;
         var goNextBtn;
         var goPrevBtn;
-        var autoPlay;
+        var autoPlay = true;
         var playCnt;
+
+
+        var autoHandle = null;
 
         init = function(){
 
@@ -52,6 +56,7 @@
         };
 
         goNext = function(){
+            clearInterval(autoHandle); // when button click, default motion will be stop
             if(playCnt < sliderL-1){
                 playCnt++;
             }else{
@@ -64,12 +69,12 @@
         };
 
         goPrev = function(){
+            clearInterval(autoHandle); // when button click, default motion will be stop
             if(playCnt > 0 ){
                 playCnt--;
             }else{
                 playCnt = sliderL-1;
             }
-            console.log('current count ::: ' + playCnt);
             $this.animate({
                 'marginLeft': -wrapW * playCnt
             }, motionT)
@@ -77,9 +82,11 @@
 
         init();
 
-        setTimeout(function(){
-            goNext();
-        }, 3000);
+        if(autoPlay){
+            autoHandle = setInterval(function(){
+                goNext();
+            }, delayTime);
+        }
 
         return this;
 
